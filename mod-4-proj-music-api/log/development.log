@@ -22255,3 +22255,527 @@ No serializer found for resource: #<Track id: nil, name: "1 of a Kind", artists:
 Completed 200 OK in 10526ms (Views: 49.7ms | ActiveRecord: 1.5ms)
 
 
+Started POST "/api/v1/users" for ::1 at 2019-01-22 17:58:42 -0500
+  [1m[35m (7.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/raquelrandall/.rvm/gems/ruby-2.3.4/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"name"=>"naomi", "username"=>"nomibearzz", "password"=>"[FILTERED]", "user"=>{"name"=>"naomi", "username"=>"nomibearzz"}}
+Unpermitted parameter: :user
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[36mUser Exists (3.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER($1) LIMIT $2[0m  [["username", "nomibearzz"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[36mUser Create (12.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "naomi"], ["username", "nomibearzz"], ["password_digest", "$2a$10$mj/vkaXjIxUpulCe9ZD7dOgivmuLlwVexSXTvDuyYCRDXvizL6fw6"], ["created_at", "2019-01-22 22:58:43.681587"], ["updated_at", "2019-01-22 22:58:43.681587"]]
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[36mUser Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER($1) AND "users"."id" != $2 LIMIT $3[0m  [["username", "nomibearzz"], ["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:14
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.23ms)
+Completed 201 Created in 165ms (Views: 18.9ms | ActiveRecord: 66.4ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-22 17:58:43 -0500
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-22 17:58:43 -0500
+Processing by Api::V1::TracksController#random as */*
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Completed 500 Internal Server Error in 199ms (ActiveRecord: 0.7ms)
+
+
+Completed 500 Internal Server Error in 169ms (ActiveRecord: 7.7ms)
+
+
+  
+  
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+  
+  
+app/controllers/api/v1/tracks_controller.rb:23:in `random'
+app/controllers/api/v1/tracks_controller.rb:12:in `top_100'
+Started GET "/api/v1/tracks/search?q=porter%20robinson" for ::1 at 2019-01-22 17:59:14 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"porter robinson"}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Completed 500 Internal Server Error in 152ms (ActiveRecord: 2.2ms)
+
+
+  
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+  
+app/controllers/api/v1/tracks_controller.rb:32:in `search'
+Started POST "/api/v1/login" for ::1 at 2019-01-22 17:59:45 -0500
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"nomibearzz", "password"=>"[FILTERED]", "auth"=>{"username"=>"nomibearzz", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "nomibearzz"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.6ms)
+Completed 401 Unauthorized in 103ms (Views: 3.6ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-22 17:59:45 -0500
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-22 17:59:45 -0500
+Processing by Api::V1::TracksController#random as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.0ms | ActiveRecord: 0.0ms)
+
+
+Processing by Api::V1::TracksController#top_100 as */*
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.14ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/api/v1/tracks/search?q=porter%20robinson" for ::1 at 2019-01-22 17:59:51 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"porter robinson"}
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.19ms)
+Filter chain halted as :authorized rendered or redirected
+Completed 401 Unauthorized in 2ms (Views: 1.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/api/v1/login" for ::1 at 2019-01-22 18:00:13 -0500
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"nomibearzz", "password"=>"[FILTERED]", "auth"=>{"username"=>"nomibearzz", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "nomibearzz"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.76ms)
+Completed 202 Accepted in 94ms (Views: 1.7ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-22 18:00:13 -0500
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-22 18:00:13 -0500
+Processing by Api::V1::TracksController#random as */*
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (6.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Completed 500 Internal Server Error in 165ms (ActiveRecord: 6.1ms)
+
+
+Completed 500 Internal Server Error in 167ms (ActiveRecord: 3.3ms)
+
+
+  
+  
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+  
+  
+app/controllers/api/v1/tracks_controller.rb:12:in `top_100'
+app/controllers/api/v1/tracks_controller.rb:23:in `random'
+Started GET "/api/v1/tracks/search?q=porter%20robinson" for ::1 at 2019-01-22 18:00:17 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"porter robinson"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Completed 500 Internal Server Error in 146ms (ActiveRecord: 0.5ms)
+
+
+  
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+  
+app/controllers/api/v1/tracks_controller.rb:32:in `search'
+Started POST "/api/v1/login" for ::1 at 2019-01-22 18:01:47 -0500
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/raquelrandall/.rvm/gems/ruby-2.3.4/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"nomibearzz", "password"=>"[FILTERED]", "auth"=>{"username"=>"nomibearzz", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "nomibearzz"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (8.04ms)
+Completed 202 Accepted in 140ms (Views: 18.8ms | ActiveRecord: 10.0ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-22 18:01:47 -0500
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-22 18:01:47 -0500
+Processing by Api::V1::TracksController#random as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Started GET "/api/v1/tracks/search?q=porter%20robinson" for ::1 at 2019-01-22 18:01:50 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"porter robinson"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Grace of You", artists: "Dream Runner", image: "https://i.scdn.co/image/bf82e9ae0e4f7aa4eb076e8242...", duration: 161400.0, popularity: 66, preview: "https://p.scdn.co/mp3-preview/b51e8bd096549f08ae83...", spotify_id: "4p0nEqlXbhJdqJ6RyosZS5", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (18.73ms)
+Completed 200 OK in 5573ms (Views: 36.1ms | ActiveRecord: 7.8ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Shelter", artists: "Porter Robinson", image: "https://i.scdn.co/image/86d2ea59969c263d3c82d5ef37...", duration: 218964.0, popularity: 68, preview: "https://p.scdn.co/mp3-preview/2312e9b4429d32218bf1...", spotify_id: "2CgOd0Lj5MuvOqzqdaAXtS", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (5.34ms)
+Completed 200 OK in 2955ms (Views: 7.7ms | ActiveRecord: 6.6ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "1 of a Kind", artists: "Blacklite District", image: "https://i.scdn.co/image/2d1e6a93ed39a4dbc2350baa83...", duration: 134002.0, popularity: 55, preview: "https://p.scdn.co/mp3-preview/b4cdf603b9a321a00cdc...", spotify_id: "37xLpW0AsrZsj5Wts3ACji", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (26.59ms)
+Completed 200 OK in 6802ms (Views: 29.2ms | ActiveRecord: 7.8ms)
+
+
+Started DELETE "/api/v1/users/5" for ::1 at 2019-01-22 18:02:52 -0500
+Processing by Api::V1::UsersController#destroy as */*
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:36
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:37
+  [1m[36mUser Destroy (20.7ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  ↳ app/controllers/api/v1/users_controller.rb:37
+  [1m[35m (6.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:37
+Completed 204 No Content in 37ms (ActiveRecord: 28.7ms)
+
+
+Started POST "/api/v1/users" for ::1 at 2019-01-22 18:11:53 -0500
+  [1m[35m (3.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/raquelrandall/.rvm/gems/ruby-2.3.4/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"name"=>"hufflepuff", "username"=>"huffpuffrulez", "password"=>"[FILTERED]", "user"=>{"name"=>"hufflepuff", "username"=>"huffpuffrulez"}}
+Unpermitted parameter: :user
+  [1m[35m (1.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[36mUser Exists (3.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER($1) LIMIT $2[0m  [["username", "huffpuffrulez"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[36mUser Create (27.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "hufflepuff"], ["username", "huffpuffrulez"], ["password_digest", "$2a$10$Z3j55NzD.Xlpm7QciY.8.uHJTmHq.7eXzXrqZ5whJiruObd7XzmeK"], ["created_at", "2019-01-22 23:11:53.836588"], ["updated_at", "2019-01-22 23:11:53.836588"]]
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[36mUser Exists (0.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER($1) AND "users"."id" != $2 LIMIT $3[0m  [["username", "huffpuffrulez"], ["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:14
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (6.69ms)
+Completed 201 Created in 171ms (Views: 16.3ms | ActiveRecord: 61.1ms)
+
+
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-22 18:11:53 -0500
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-22 18:11:53 -0500
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::TracksController#random as */*
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Grace of You", artists: "Dream Runner", image: "https://i.scdn.co/image/bf82e9ae0e4f7aa4eb076e8242...", duration: 161400.0, popularity: 66, preview: "https://p.scdn.co/mp3-preview/b51e8bd096549f08ae83...", spotify_id: "4p0nEqlXbhJdqJ6RyosZS5", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (16.18ms)
+Completed 200 OK in 5112ms (Views: 31.8ms | ActiveRecord: 10.4ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "1 of a Kind", artists: "Blacklite District", image: "https://i.scdn.co/image/2d1e6a93ed39a4dbc2350baa83...", duration: 134002.0, popularity: 55, preview: "https://p.scdn.co/mp3-preview/b4cdf603b9a321a00cdc...", spotify_id: "37xLpW0AsrZsj5Wts3ACji", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (21.58ms)
+Completed 200 OK in 6268ms (Views: 24.5ms | ActiveRecord: 7.2ms)
+
+
+Started GET "/api/v1/tracks/search?q=someday" for ::1 at 2019-01-22 18:12:03 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"someday"}
+  [1m[36mUser Load (16.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Someday", artists: "The Strokes", image: "https://i.scdn.co/image/36ad5132eee494bb519cd43e70...", duration: 183440.0, popularity: 67, preview: "https://p.scdn.co/mp3-preview/320766cb9483ef72966e...", spotify_id: "7hm4HTk9encxT0LYC0J6oI", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (7.5ms)
+Completed 200 OK in 1433ms (Views: 36.9ms | ActiveRecord: 16.9ms)
+
+
+Started DELETE "/api/v1/users/6" for ::1 at 2019-01-22 18:15:27 -0500
+Processing by Api::V1::UsersController#destroy as */*
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (21.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:36
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:37
+  [1m[36mUser Destroy (8.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 6]]
+  ↳ app/controllers/api/v1/users_controller.rb:37
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:37
+Completed 204 No Content in 76ms (ActiveRecord: 32.1ms)
+
+
+Started GET "/api/v1/users" for ::1 at 2019-01-22 18:17:40 -0500
+  [1m[35m (8.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/raquelrandall/.rvm/gems/ruby-2.3.4/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.13ms)
+Completed 200 OK in 49ms (Views: 26.2ms | ActiveRecord: 12.1ms)
+
+
+Started POST "/api/v1/login" for ::1 at 2019-01-22 18:17:52 -0500
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"KevyWevy", "password"=>"[FILTERED]", "auth"=>{"username"=>"KevyWevy", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "KevyWevy"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.4ms)
+Completed 202 Accepted in 96ms (Views: 8.4ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-22 18:17:52 -0500
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-22 18:17:52 -0500
+Processing by Api::V1::TracksController#random as */*
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Grace of You", artists: "Dream Runner", image: "https://i.scdn.co/image/bf82e9ae0e4f7aa4eb076e8242...", duration: 161400.0, popularity: 66, preview: "https://p.scdn.co/mp3-preview/b51e8bd096549f08ae83...", spotify_id: "4p0nEqlXbhJdqJ6RyosZS5", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (20.88ms)
+Completed 200 OK in 5064ms (Views: 41.6ms | ActiveRecord: 9.4ms)
+
+
+Started DELETE "/api/v1/users/4" for ::1 at 2019-01-22 18:17:58 -0500
+Processing by Api::V1::UsersController#destroy as */*
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (6.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:36
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:37
+  [1m[36mUser Destroy (7.8ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 4]]
+  ↳ app/controllers/api/v1/users_controller.rb:37
+  [1m[35m (7.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:37
+Completed 204 No Content in 32ms (ActiveRecord: 23.6ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "1 of a Kind", artists: "Blacklite District", image: "https://i.scdn.co/image/2d1e6a93ed39a4dbc2350baa83...", duration: 134002.0, popularity: 55, preview: "https://p.scdn.co/mp3-preview/b4cdf603b9a321a00cdc...", spotify_id: "37xLpW0AsrZsj5Wts3ACji", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (19.35ms)
+Completed 200 OK in 6121ms (Views: 23.0ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/api/v1/users" for ::1 at 2019-01-22 18:18:02 -0500
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.62ms)
+Completed 200 OK in 8ms (Views: 4.7ms | ActiveRecord: 2.8ms)
+
+
+Started POST "/api/v1/login" for ::1 at 2019-01-22 18:18:13 -0500
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"raquel.r", "password"=>"[FILTERED]", "auth"=>{"username"=>"raquel.r", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "raquel.r"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (0.17ms)
+Completed 202 Accepted in 83ms (Views: 0.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-22 18:18:13 -0500
+Processing by Api::V1::TracksController#random as */*
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-22 18:18:13 -0500
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Grace of You", artists: "Dream Runner", image: "https://i.scdn.co/image/bf82e9ae0e4f7aa4eb076e8242...", duration: 161400.0, popularity: 66, preview: "https://p.scdn.co/mp3-preview/b51e8bd096549f08ae83...", spotify_id: "4p0nEqlXbhJdqJ6RyosZS5", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (25.87ms)
+Completed 200 OK in 5019ms (Views: 32.1ms | ActiveRecord: 1.4ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "1 of a Kind", artists: "Blacklite District", image: "https://i.scdn.co/image/2d1e6a93ed39a4dbc2350baa83...", duration: 134002.0, popularity: 55, preview: "https://p.scdn.co/mp3-preview/b4cdf603b9a321a00cdc...", spotify_id: "37xLpW0AsrZsj5Wts3ACji", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (43.14ms)
+Completed 200 OK in 5981ms (Views: 50.1ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/v1/tracks/search?q=the%201975" for ::1 at 2019-01-22 18:18:25 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"the 1975"}
+  [1m[36mUser Load (3.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "It's Not Living (If It's Not With You)", artists: "The 1975", image: "https://i.scdn.co/image/24753fe5d9ec614b83e1f069c2...", duration: 248335.0, popularity: 80, preview: nil, spotify_id: "3TgMcrV32NUKjEG2ujn9eh", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (8.59ms)
+Completed 200 OK in 2933ms (Views: 10.7ms | ActiveRecord: 3.4ms)
+
+
+Started POST "/api/v1/login" for ::1 at 2019-01-22 18:23:12 -0500
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"raquel.r", "password"=>"[FILTERED]", "auth"=>{"username"=>"raquel.r", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "raquel.r"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (1.42ms)
+Completed 202 Accepted in 122ms (Views: 5.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-22 18:23:12 -0500
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-22 18:23:12 -0500
+Processing by Api::V1::TracksController#top_100 as */*
+Processing by Api::V1::TracksController#random as */*
+  [1m[36mUser Load (1.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Grace of You", artists: "Dream Runner", image: "https://i.scdn.co/image/bf82e9ae0e4f7aa4eb076e8242...", duration: 161400.0, popularity: 66, preview: "https://p.scdn.co/mp3-preview/b51e8bd096549f08ae83...", spotify_id: "4p0nEqlXbhJdqJ6RyosZS5", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (15.98ms)
+Completed 200 OK in 5906ms (Views: 37.2ms | ActiveRecord: 1.4ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "1 of a Kind", artists: "Blacklite District", image: "https://i.scdn.co/image/2d1e6a93ed39a4dbc2350baa83...", duration: 134002.0, popularity: 55, preview: "https://p.scdn.co/mp3-preview/b4cdf603b9a321a00cdc...", spotify_id: "37xLpW0AsrZsj5Wts3ACji", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (20.9ms)
+Completed 200 OK in 6835ms (Views: 23.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/api/v1/tracks/search?q=all%20j" for ::1 at 2019-01-22 18:28:45 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"all j"}
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Only You (feat. WizKid, Offset & J Balvin)", artists: "Metro Boomin", image: "https://i.scdn.co/image/cbeb99770353e401e6696fc946...", duration: 218626.0, popularity: 71, preview: nil, spotify_id: "3XFwOQU8wxXWl8Rxj3lrOi", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (12.82ms)
+Completed 200 OK in 1206ms (Views: 22.4ms | ActiveRecord: 6.8ms)
+
+
+Started GET "/api/v1/tracks/search?q=allj" for ::1 at 2019-01-22 18:28:56 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"allj"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Розовое вино", artists: "Allj", image: "https://i.scdn.co/image/122ebdaefa4f7718457a1d4fc4...", duration: 246818.0, popularity: 66, preview: "https://p.scdn.co/mp3-preview/0141691bfa3a631889b2...", spotify_id: "2qgUF9fPrq5ZnHY6PxZdIi", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (11.93ms)
+Completed 200 OK in 1634ms (Views: 16.0ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/v1/tracks/search?q=basta" for ::1 at 2019-01-22 18:31:21 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"basta"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Basta Ya - Banda", artists: "Jenni Rivera", image: "https://i.scdn.co/image/a292b88f3add1c15d98980d7e8...", duration: 243173.0, popularity: 60, preview: nil, spotify_id: "3ic1CdU3u3vCLm2BlklevZ", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (8.68ms)
+Completed 200 OK in 1026ms (Views: 12.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/api/v1/tracks/search?q=ak-47" for ::1 at 2019-01-22 18:31:41 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"ak-47"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Ak-47", artists: "Little Big", image: "https://i.scdn.co/image/6d1da31fe5b63a2f553c694404...", duration: 182044.0, popularity: 48, preview: "https://p.scdn.co/mp3-preview/4eed5b61da24aac6e2f9...", spotify_id: "6CEVjFAyQoOrBKJIfOCGyj", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (10.14ms)
+Completed 200 OK in 353ms (Views: 17.8ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/api/v1/tracks/search?q=ed%20sheeran" for ::1 at 2019-01-22 18:31:59 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"ed sheeran"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Perfect", artists: "Ed Sheeran", image: "https://i.scdn.co/image/3b673c999773ba34acd5d724d4...", duration: 263400.0, popularity: 88, preview: "https://p.scdn.co/mp3-preview/9779493d90a47f29e425...", spotify_id: "0tgVpDi06FyKpA1z0VMD4v", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (17.18ms)
+Completed 200 OK in 360ms (Views: 20.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/api/v1/users" for ::1 at 2019-01-22 18:40:29 -0500
+Processing by Api::V1::UsersController#index as HTML
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/api/v1/users_controller.rb:7
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (8.29ms)
+Completed 200 OK in 36ms (Views: 25.3ms | ActiveRecord: 7.0ms)
+
+
+Started POST "/api/v1/users" for ::1 at 2019-01-22 21:03:17 -0500
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/raquelrandall/.rvm/gems/ruby-2.3.4/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::UsersController#create as JSON
+  Parameters: {"name"=>"puppy", "username"=>"puppykins", "password"=>"[FILTERED]", "user"=>{"name"=>"puppy", "username"=>"puppykins"}}
+Unpermitted parameter: :user
+  [1m[35m (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[36mUser Exists (3.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER($1) LIMIT $2[0m  [["username", "puppykins"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[36mUser Create (32.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "puppy"], ["username", "puppykins"], ["password_digest", "$2a$10$s6SCdfxUdDJVDsEqBGNwkea7Z.yZ3JvBxmzUTSSy0C/tzMtYjGx6G"], ["created_at", "2019-01-23 02:03:18.517809"], ["updated_at", "2019-01-23 02:03:18.517809"]]
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/users_controller.rb:13
+  [1m[36mUser Exists (1.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."username") = LOWER($1) AND "users"."id" != $2 LIMIT $3[0m  [["username", "puppykins"], ["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/users_controller.rb:14
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (5.38ms)
+Completed 201 Created in 194ms (Views: 23.6ms | ActiveRecord: 85.6ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-22 21:03:18 -0500
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-22 21:03:18 -0500
+Processing by Api::V1::TracksController#random as */*
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Grace of You", artists: "Dream Runner", image: "https://i.scdn.co/image/bf82e9ae0e4f7aa4eb076e8242...", duration: 161400.0, popularity: 66, preview: "https://p.scdn.co/mp3-preview/b51e8bd096549f08ae83...", spotify_id: "4p0nEqlXbhJdqJ6RyosZS5", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (18.51ms)
+Completed 200 OK in 3938ms (Views: 35.7ms | ActiveRecord: 6.9ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "1 of a Kind", artists: "Blacklite District", image: "https://i.scdn.co/image/2d1e6a93ed39a4dbc2350baa83...", duration: 134002.0, popularity: 55, preview: "https://p.scdn.co/mp3-preview/b4cdf603b9a321a00cdc...", spotify_id: "37xLpW0AsrZsj5Wts3ACji", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (19.67ms)
+Completed 200 OK in 4461ms (Views: 22.4ms | ActiveRecord: 6.6ms)
+
+
+Started GET "/api/v1/tracks/search?q=loving%20someone" for ::1 at 2019-01-22 21:03:54 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"loving someone"}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 7], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+No serializer found for resource: #<Track id: nil, name: "Loving Someone", artists: "The 1975", image: "https://i.scdn.co/image/a2aba574af86865eee08624042...", duration: 260426.0, popularity: 59, preview: nil, spotify_id: "4p1pxmqtPtPHqWbOd2RgXu", created_at: nil, updated_at: nil>
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with Array (3.79ms)
+Completed 200 OK in 12070ms (Views: 6.0ms | ActiveRecord: 1.0ms)
+
+
