@@ -30745,3 +30745,35 @@ Unpermitted parameters: :spotify_id, :playlist_track
 Completed 200 OK in 207ms (Views: 2.6ms | ActiveRecord: 22.3ms)
 
 
+Started POST "/api/v1/users/1/playlists" for ::1 at 2019-01-23 17:49:44 -0500
+Processing by Api::V1::PlaylistsController#create as JSON
+  Parameters: {"name"=>"New list", "user_id"=>"1", "playlist"=>{"name"=>"New list", "user_id"=>"1"}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Unpermitted parameter: :playlist
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/playlists_controller.rb:13
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/playlists_controller.rb:13
+  [1m[36mPlaylist Create (1.7ms)[0m  [1m[32mINSERT INTO "playlists" ("name", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "New list"], ["user_id", 1], ["created_at", "2019-01-23 22:49:44.801725"], ["updated_at", "2019-01-23 22:49:44.801725"]]
+  ↳ app/controllers/api/v1/playlists_controller.rb:13
+  [1m[35m (4.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/playlists_controller.rb:13
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered PlaylistSerializer with ActiveModelSerializers::Adapter::Attributes (1.79ms)
+Completed 200 OK in 133ms (Views: 11.0ms | ActiveRecord: 9.5ms)
+
+
+Started GET "/api/v1/tracks/search?q=take%20me%20on" for ::1 at 2019-01-23 17:49:58 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"take me on"}
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Completed 500 Internal Server Error in 632ms (ActiveRecord: 5.7ms)
+
+
+  
+RestClient::ServiceUnavailable (503 Service Unavailable):
+  
+app/controllers/api/v1/tracks_controller.rb:32:in `search'
