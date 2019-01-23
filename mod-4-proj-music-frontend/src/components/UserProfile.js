@@ -30,9 +30,11 @@ class UserProfile extends React.Component {
     return(
       <div>
         <h1>Welcome Back {this.props.userInfo.name}</h1>
+        <p>Name: {this.props.userInfo.name}</p>
+        <p>Username: {this.props.userInfo.username}</p>
         <button type="button" className="btn btn-warning" onClick={this.clickHandler}>Edit User</button>
         {this.state.clicked ? (<form onSubmit={(e) => this.props.editSubmitHandler(e, this.state)}>
-          <h3>Edit User</h3>
+          <h4>Edit User</h4>
           <input type="text" name="name" value={this.state.name} onChange={this.changeHandler} /><br/>
           <input type="text" name="username" value={this.state.username} onChange={this.changeHandler} /><br/>
           <button type="button" value="Edit" className="btn btn-warning">Edit</button>
