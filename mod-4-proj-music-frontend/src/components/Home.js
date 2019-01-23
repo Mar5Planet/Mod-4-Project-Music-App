@@ -2,6 +2,7 @@ import React from 'react';
 import Search from './Search'
 import SearchedSongs from './SearchedSongs'
 import Loading from './Loading'
+import AddToPlaylistForm from './AddToPlaylistForm'
 
 class Home extends React.Component{
 
@@ -18,14 +19,9 @@ class Home extends React.Component{
         this.props.searchedSongs.map((track, i) => (
           <SearchedSongs
             key={i}
-            name={track.name}
-            artist={track.artists}
-            image={track.image}
-            popularity={track.popularity}
-            preview={track.preview}
-            duration={track.duration}
-            spotify_id={track.spotify_id}
+            track={track}
             addToPlaylist={this.props.addToPlaylist}
+            playlist={this.props.playlist}
           />
         ))}
       </div>

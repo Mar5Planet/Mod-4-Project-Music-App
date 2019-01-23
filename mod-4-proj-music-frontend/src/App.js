@@ -26,7 +26,9 @@ class App extends Component {
     login: false,
     playlist: [],
     searchedSongs: [],
-    loading: false
+    loading: false,
+    tracks: [],
+    playlistTracks: [],
   }
 
   componentDidMount(){
@@ -84,6 +86,19 @@ class App extends Component {
       })
   }
 
+  getTracks = () => {
+    fetch('http://localhost:3001/api/v1/tracks', {
+      headers: {
+        Authorization: localStorage.getItem("token")
+      }
+    }).then(res => res.json())
+    .then(data => {
+      this.setState({
+        tracks: data
+      })
+    })
+  }
+
   loginSubmitHandler = (userInfo) => {
     fetch('http://localhost:3001/api/v1/login', {
       method: 'POST',
@@ -105,6 +120,9 @@ class App extends Component {
         this.props.history.push("/home")
         this.getRandom()
         this.getTopHits()
+        this.getPlaylist(data.user.id)
+        this.getTracks()
+        this.getPlaylistTracks()
       })
   }
 
@@ -117,7 +135,6 @@ class App extends Component {
        headers: {
          "Content-Type": "application/json",
          Accept: "application/json",
-         Authorization: `${token}`
        },
        body: JSON.stringify({
          name: userInfo.name,
@@ -149,9 +166,9 @@ class App extends Component {
 
 
 
-    submitPlaylistHandler= (e, playlistState) => {
+    submitPlaylistHandler= (e, playlistId, track, spotifyId) => {
       e.preventDefault()
-      fetch('http://localhost:3001/api/v1/playlists', {
+      fetch(`http://localhost:3001/api/v1/playlist_tracks`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -159,17 +176,57 @@ class App extends Component {
           Authorization: localStorage.getItem("token")
         },
         body: JSON.stringify({
-          name: playlistState.name,
-          user_id: playlistState.userId,
-          spotify_id: "10M2Ex445zw585Ducldzkw"
+          playlist_id: playlistId,
+          track_id: track.id,
+          spotify_id: spotifyId
         })
       }).then(res=>res.json())
         .then(data=>{
-          let fullPlaylist = [...this.state.playlist, data]
+          let fullPlaylist = [...this.state.playlistTracks, data]
+          let newTrack = {
+            id: data.track_id,
+            name: track.name,
+            artists: track.artists,
+            image: track.image,
+            duration: track.duration,
+            popularity: track.popularity,
+            preview: track.preview,
+            spotify_id: track.spotify_id
+          }
           this.setState({
-            playlist: fullPlaylist
+            playlistTracks: fullPlaylist,
+            tracks: [...this.state.tracks, newTrack]
           })
-        })
+        }).then(alert(`${track.name} added!`))
+    }
+
+    getPlaylist = (id) => {
+      fetch(`http://localhost:3001/api/v1/users/${id}/playlists`, {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      })
+    .then(res=>res.json())
+    .then(data => {
+      let newPl = [...data].filter(pl => pl.user_id === id)
+      this.setState({
+        playlist: newPl
+      })
+    })
+    }
+
+    getPlaylistTracks = () => {
+      fetch(`http://localhost:3001/api/v1/playlist_tracks`, {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      })
+    .then(res=>res.json())
+    .then(data => {
+      this.setState({
+        playlistTracks: data
+      })
+    })
     }
 
 
@@ -219,25 +276,45 @@ class App extends Component {
       })
     }
 
-    addToPlaylist = (track) => {
-      let newPlaylist = [...this.state.playlist, track]
-      this.setState({
-        playlist: newPlaylist
-      })
-      alert(`${track.name} added!`)
+    createNewPlaylist = (e, playlist) => {
+      e.preventDefault()
+      fetch(`http://localhost:3001/api/v1/users/${playlist.userId}/playlists`, {
+       method: "POST",
+       headers: {
+         "Content-Type": "application/json",
+         Accept: "application/json",
+         Authorization: localStorage.getItem("token")
+       },
+       body: JSON.stringify({
+         name: playlist.name,
+         user_id: playlist.userId
+       })})
+       .then(res => res.json())
+       .then(data => {
+         let playlist = [data,...this.state.playlist]
+         this.setState({
+           playlist
+         })
+       })
     }
 
-    removeSong = (trackObj) => {
-      let newPlaylist = [...this.state.playlist].filter(track => track !== trackObj)
-      this.setState({playlist: newPlaylist})
-    }
-    // fetchTracks = () => {
-    //   fetch('http://localhost:3001/api/v1/tracks')
+    // addToPlaylist = (track) => {
+    //   let newPlaylist = [...this.state.playlist, track]
+    //   this.setState({
+    //     playlist: newPlaylist
+    //   })
+    //   alert(`${track.name} added!`)
+    // }
+    //
+    // removeSong = (trackObj) => {
+    //   let newPlaylist = [...this.state.playlist].filter(track => track !== trackObj)
+    //   this.setState({playlist: newPlaylist})
     // }
 
 
-  render() {
 
+  render() {
+    console.log(this.state.tracks);
     return (
       <div className="App">
       <Sidebar
@@ -251,9 +328,11 @@ class App extends Component {
         render={()=> (
           <Playlist
             userInfo={this.state.user}
-            submitPlaylistHandler={this.submitPlaylistHandler}
+            createNewPlaylist={this.createNewPlaylist}
             playlist={this.state.playlist}
             removeSong={this.removeSong}
+            tracks={this.state.tracks}
+            playlistTracks={this.state.playlistTracks}
           />
         )} />
 
@@ -264,7 +343,8 @@ class App extends Component {
             <Loading /> :
             <PopTrack
               topHits={this.state.topHits}
-              addToPlaylist={this.addToPlaylist}
+              addToPlaylist={this.submitPlaylistHandler}
+              playlist={this.state.playlist}
               />
             )}
             />
@@ -276,7 +356,8 @@ class App extends Component {
               <Loading /> :
               <RandomTrack
                 random={this.state.random}
-                addToPlaylist={this.addToPlaylist}
+                addToPlaylist={this.submitPlaylistHandler}
+                playlist={this.state.playlist}
                 />
             )}
             />
@@ -319,7 +400,8 @@ class App extends Component {
               searchedSongs={this.state.searchedSongs}
               login={this.state.login}
               loading={this.state.loading}
-              addToPlaylist={this.addToPlaylist}
+              addToPlaylist={this.submitPlaylistHandler}
+              playlist={this.state.playlist}
             />
           )}
           />
