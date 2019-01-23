@@ -6,17 +6,13 @@ class RandomTrack extends React.Component {
   render() {
     return(
       <div className="container">
+      <h1>Random Songs</h1>
         {this.props.random.map(track => (
           <Random
             key={track.name}
-            name={track.name}
-            artist={track.artists}
-            image={track.image}
-            popularity={track.popularity}
-            preview={track.preview}
-            duration={track.duration}
-            spotify_id={track.spotify_id}
+            track={track}
             addToPlaylist={this.props.addToPlaylist}
+            playlist={this.props.playlist}
           />
         ))}
       </div>

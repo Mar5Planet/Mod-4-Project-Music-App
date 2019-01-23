@@ -19,7 +19,7 @@ class PlaylistForm extends React.Component {
 
   render() {
     return(
-      <form onSubmit={(e) => this.props.submitPlaylistHandler(e, this.state)}>
+      <form onSubmit={(e) => this.props.createNewPlaylist(e, this.state)}>
         <h4>Create New Playlist </h4>
         <input type="text" placeholder="Playlist Name" onChange={this.changeHandler} value={this.state.playlistName} />
         <input type="hidden" value={this.state.userId} />

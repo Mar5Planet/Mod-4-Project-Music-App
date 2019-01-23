@@ -8,17 +8,13 @@ class PopTrack extends React.Component {
 
     return(
       <div className="container">
+      <h1>Top Hits</h1>
         {this.props.topHits.map(track => (
           <Popular
             key={track.name}
-            name={track.name}
-            artist={track.artists}
-            image={track.image}
-            popularity={track.popularity}
-            preview={track.preview}
-            duration={track.duration}
-            spotify_id={track.spotify_id}
+            track={track}
             addToPlaylist={this.props.addToPlaylist}
+            playlist={this.props.playlist}
           />
         ))}
       </div>
