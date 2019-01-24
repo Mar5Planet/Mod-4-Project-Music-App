@@ -151,6 +151,9 @@ class App extends Component {
           this.props.history.push("/home")
           this.getRandom()
           this.getTopHits()
+          this.getPlaylist(data.user.id)
+          this.getTracks()
+          this.getPlaylistTracks()
         })
 
     }

@@ -3,6 +3,7 @@ import Search from './Search'
 import SearchedSongs from './SearchedSongs'
 import Loading from './Loading'
 import AddToPlaylistForm from './AddToPlaylistForm'
+import {Link} from 'react-router-dom'
 
 class Home extends React.Component{
 
@@ -25,7 +26,12 @@ class Home extends React.Component{
           />
         ))}
       </div>
-    ) : (<h2>Welcome to Music App! Please Log in!</h2>)
+    ) : (
+      <div>
+        <h2>Welcome to Music App! Please <Link to={"/login"} >Log in!</Link></h2>
+
+      </div>
+    )
   }
 
       </div>
