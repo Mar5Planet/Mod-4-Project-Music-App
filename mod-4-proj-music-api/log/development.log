@@ -30777,3 +30777,569 @@ Completed 500 Internal Server Error in 632ms (ActiveRecord: 5.7ms)
 RestClient::ServiceUnavailable (503 Service Unavailable):
   
 app/controllers/api/v1/tracks_controller.rb:32:in `search'
+  [1m[35m (19.6ms)[0m  [1m[35mCREATE DATABASE "mod-4-proj-music-app_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (122.2ms)[0m  [1m[35mCREATE DATABASE "mod-4-proj-music-app_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (23.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(3813983994894142860)[0m
+  ↳ bin/rails:9
+  [1m[35m (14.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (48.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(3813983994894142860)[0m
+  ↳ bin/rails:9
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started POST "/api/v1/login" for ::1 at 2019-01-23 19:01:48 -0500
+  [1m[35m (1.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/raquelrandall/.rvm/gems/ruby-2.3.4/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"test", "password"=>"[FILTERED]", "auth"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (13.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (27.51ms)
+Completed 202 Accepted in 390ms (Views: 47.6ms | ActiveRecord: 38.0ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-23 19:01:50 -0500
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-23 19:01:50 -0500
+Started GET "/api/v1/tracks" for ::1 at 2019-01-23 19:01:50 -0500
+Started GET "/api/v1/playlist_tracks" for ::1 at 2019-01-23 19:01:50 -0500
+Processing by Api::V1::TracksController#random as */*
+Started GET "/api/v1/users/2/playlists" for ::1 at 2019-01-23 19:01:50 -0500
+  [1m[36mUser Load (14.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::TracksController#index as */*
+  [1m[36mUser Load (5.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Processing by Api::V1::TracksController#top_100 as */*
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (5.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Completed 500 Internal Server Error in 311ms (ActiveRecord: 121.4ms)
+
+
+  
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+  
+app/controllers/api/v1/tracks_controller.rb:12:in `top_100'
+Completed 500 Internal Server Error in 477ms (ActiveRecord: 14.8ms)
+
+
+  
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+  
+app/controllers/api/v1/tracks_controller.rb:23:in `random'
+Processing by Api::V1::PlaylistTracksController#index as */*
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Processing by Api::V1::PlaylistsController#index as */*
+  ↳ app/controllers/application_controller.rb:27
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (6.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (7.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTrack Load (66.6ms)[0m  [1m[34mSELECT "tracks".* FROM "tracks"[0m
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/api/v1/tracks_controller.rb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mPlaylist Load (15.7ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/api/v1/playlists_controller.rb:6
+  [1m[36mPlaylistTrack Load (13.5ms)[0m  [1m[34mSELECT "playlist_tracks".* FROM "playlist_tracks"[0m
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (10.84ms)
+Completed 200 OK in 736ms (Views: 76.8ms | ActiveRecord: 219.7ms)
+
+
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.75ms)
+Completed 200 OK in 235ms (Views: 53.2ms | ActiveRecord: 169.2ms)
+
+
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.56ms)
+Completed 200 OK in 248ms (Views: 35.0ms | ActiveRecord: 187.7ms)
+
+
+Started GET "/api/v1/tracks/search?q=clair%20de%20lune" for ::1 at 2019-01-23 19:01:56 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"clair de lune"}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Completed 500 Internal Server Error in 169ms (ActiveRecord: 1.0ms)
+
+
+  
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+  
+app/controllers/api/v1/tracks_controller.rb:32:in `search'
+Started POST "/api/v1/login" for ::1 at 2019-01-23 19:02:45 -0500
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"test", "password"=>"[FILTERED]", "auth"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (4.23ms)
+Completed 202 Accepted in 131ms (Views: 10.2ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-23 19:02:45 -0500
+Started GET "/api/v1/users/2/playlists" for ::1 at 2019-01-23 19:02:45 -0500
+Started GET "/api/v1/tracks" for ::1 at 2019-01-23 19:02:45 -0500
+Started GET "/api/v1/playlist_tracks" for ::1 at 2019-01-23 19:02:45 -0500
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-23 19:02:45 -0500
+Processing by Api::V1::TracksController#random as */*
+Processing by Api::V1::TracksController#index as */*
+Processing by Api::V1::TracksController#top_100 as */*
+Processing by Api::V1::PlaylistTracksController#index as */*
+  [1m[36mUser Load (6.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (8.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::PlaylistsController#index as */*
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (32.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Parameters: {"user_id"=>"2"}
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mPlaylistTrack Load (60.7ms)[0m  [1m[34mSELECT "playlist_tracks".* FROM "playlist_tracks"[0m
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:5
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (3.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTrack Load (3.9ms)[0m  [1m[34mSELECT "tracks".* FROM "tracks"[0m
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/api/v1/tracks_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (9.99ms)
+  [1m[36mPlaylist Load (25.7ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (11.46ms)
+Completed 200 OK in 152ms (Views: 43.7ms | ActiveRecord: 35.7ms)
+
+
+  ↳ app/controllers/api/v1/playlists_controller.rb:6
+Completed 200 OK in 139ms (Views: 47.5ms | ActiveRecord: 83.5ms)
+
+
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.21ms)
+Completed 200 OK in 177ms (Views: 35.0ms | ActiveRecord: 132.2ms)
+
+
+Completed 500 Internal Server Error in 258ms (ActiveRecord: 32.7ms)
+
+
+  
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+  
+app/controllers/api/v1/tracks_controller.rb:23:in `random'
+Completed 500 Internal Server Error in 332ms (ActiveRecord: 6.7ms)
+
+
+  
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+  
+app/controllers/api/v1/tracks_controller.rb:12:in `top_100'
+Started GET "/api/v1/tracks/search?q=clair%20de%20lune" for ::1 at 2019-01-23 19:02:48 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"clair de lune"}
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Completed 500 Internal Server Error in 139ms (ActiveRecord: 2.9ms)
+
+
+  
+RSpotify::MissingAuthentication (RSpotify::MissingAuthentication):
+  
+app/controllers/api/v1/tracks_controller.rb:32:in `search'
+Started POST "/api/v1/login" for ::1 at 2019-01-23 19:03:33 -0500
+  [1m[35m (8.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/raquelrandall/.rvm/gems/ruby-2.3.4/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"test", "password"=>"[FILTERED]", "auth"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (6.3ms)
+Completed 202 Accepted in 204ms (Views: 26.1ms | ActiveRecord: 22.5ms)
+
+
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-23 19:03:34 -0500
+Started GET "/api/v1/users/2/playlists" for ::1 at 2019-01-23 19:03:34 -0500
+Started GET "/api/v1/tracks" for ::1 at 2019-01-23 19:03:34 -0500
+Started GET "/api/v1/playlist_tracks" for ::1 at 2019-01-23 19:03:34 -0500
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-23 19:03:34 -0500
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::TracksController#index as */*
+  [1m[36mUser Load (2.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::TracksController#random as */*
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+Processing by Api::V1::PlaylistsController#index as */*
+Processing by Api::V1::PlaylistTracksController#index as */*
+  ↳ app/controllers/application_controller.rb:27
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (2.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTrack Load (4.8ms)[0m  [1m[34mSELECT "tracks".* FROM "tracks"[0m
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/api/v1/tracks_controller.rb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (8.03ms)
+Completed 200 OK in 7858ms (Views: 7157.7ms | ActiveRecord: 106.9ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (29.8ms)
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (46.13ms)
+  ↳ app/controllers/application_controller.rb:27
+Completed 200 OK in 8025ms (Views: 140.2ms | ActiveRecord: 17.0ms)
+
+
+Completed 200 OK in 7934ms (Views: 4533.4ms | ActiveRecord: 17.6ms)
+
+
+  [1m[36mPlaylist Load (34.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/api/v1/playlists_controller.rb:6
+  [1m[36mPlaylistTrack Load (33.3ms)[0m  [1m[34mSELECT "playlist_tracks".* FROM "playlist_tracks"[0m
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.75ms)
+Completed 200 OK in 7435ms (Views: 133.8ms | ActiveRecord: 159.6ms)
+
+
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (3.95ms)
+Completed 200 OK in 7446ms (Views: 148.4ms | ActiveRecord: 156.3ms)
+
+
+Started GET "/api/v1/tracks/search?q=clair%20de%20lune" for ::1 at 2019-01-23 19:03:42 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"clair de lune"}
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (19.45ms)
+Completed 200 OK in 807ms (Views: 32.0ms | ActiveRecord: 9.3ms)
+
+
+Started POST "/api/v1/playlist_tracks" for ::1 at 2019-01-23 19:04:07 -0500
+Processing by Api::V1::PlaylistTracksController#create as JSON
+  Parameters: {"playlist_id"=>"8", "track_id"=>nil, "spotify_id"=>"5u5aVJKjSMJr4zesMPz7bL", "playlist_track"=>{"track_id"=>nil, "playlist_id"=>"8"}}
+  [1m[36mUser Load (57.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mTrack Load (2.2ms)[0m  [1m[34mSELECT  "tracks".* FROM "tracks" WHERE "tracks"."spotify_id" = $1 LIMIT $2[0m  [["spotify_id", "5u5aVJKjSMJr4zesMPz7bL"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:17
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/models/track.rb:19
+  [1m[36mTrack Create (45.9ms)[0m  [1m[32mINSERT INTO "tracks" ("name", "artists", "image", "duration", "popularity", "preview", "spotify_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"[0m  [["name", "Clair de Lune, L. 32"], ["artists", "Claude Debussy"], ["image", "https://i.scdn.co/image/b5e5b27c53dcbbb51d6ff7771f37d5b7d4e84237"], ["duration", 268000.0], ["popularity", 64], ["preview", "https://p.scdn.co/mp3-preview/79531c59dbfc3679d23407dfdcb9a9461318c9a3?cid=ff82bb9b0c174f2cac9c1860a76d0a00"], ["spotify_id", "5u5aVJKjSMJr4zesMPz7bL"], ["created_at", "2019-01-24 00:04:07.946590"], ["updated_at", "2019-01-24 00:04:07.946590"]]
+  ↳ app/models/track.rb:19
+  [1m[35m (2.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/models/track.rb:19
+Unpermitted parameters: :spotify_id, :playlist_track
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:27
+  [1m[36mPlaylist Load (0.7ms)[0m  [1m[34mSELECT  "playlists".* FROM "playlists" WHERE "playlists"."id" = $1 LIMIT $2[0m  [["id", 8], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:27
+  [1m[36mTrack Load (0.8ms)[0m  [1m[34mSELECT  "tracks".* FROM "tracks" WHERE "tracks"."id" = $1 LIMIT $2[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:27
+  [1m[36mPlaylistTrack Create (11.0ms)[0m  [1m[32mINSERT INTO "playlist_tracks" ("track_id", "playlist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["track_id", 23], ["playlist_id", 8], ["created_at", "2019-01-24 00:04:08.240542"], ["updated_at", "2019-01-24 00:04:08.240542"]]
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:27
+  [1m[35m (8.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:27
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered PlaylistTrackSerializer with ActiveModelSerializers::Adapter::Attributes (5.51ms)
+Completed 200 OK in 717ms (Views: 18.4ms | ActiveRecord: 160.7ms)
+
+
+Started POST "/api/v1/users/2/playlists" for ::1 at 2019-01-23 19:04:29 -0500
+Processing by Api::V1::PlaylistsController#create as JSON
+  Parameters: {"name"=>"Whyyyy", "user_id"=>"2", "playlist"=>{"name"=>"Whyyyy", "user_id"=>"2"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Unpermitted parameter: :playlist
+  [1m[35m (8.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/playlists_controller.rb:13
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/playlists_controller.rb:13
+  [1m[36mPlaylist Create (50.9ms)[0m  [1m[32mINSERT INTO "playlists" ("name", "user_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Whyyyy"], ["user_id", 2], ["created_at", "2019-01-24 00:04:29.400211"], ["updated_at", "2019-01-24 00:04:29.400211"]]
+  ↳ app/controllers/api/v1/playlists_controller.rb:13
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/playlists_controller.rb:13
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered PlaylistSerializer with ActiveModelSerializers::Adapter::Attributes (0.59ms)
+Completed 200 OK in 87ms (Views: 3.2ms | ActiveRecord: 62.7ms)
+
+
+Started GET "/api/v1/tracks/search?q=cats" for ::1 at 2019-01-23 19:04:48 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"cats"}
+  [1m[36mUser Load (4.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (16.91ms)
+Completed 200 OK in 1483ms (Views: 33.1ms | ActiveRecord: 4.0ms)
+
+
+Started GET "/api/v1/tracks/search?q=feduk" for ::1 at 2019-01-23 19:05:07 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"feduk"}
+  [1m[36mUser Load (46.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (200.48ms)
+Completed 200 OK in 696ms (Views: 272.9ms | ActiveRecord: 46.2ms)
+
+
+Started POST "/api/v1/login" for ::1 at 2019-01-23 19:08:26 -0500
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"test", "password"=>"[FILTERED]", "auth"=>{"username"=>"test", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (9.53ms)
+Completed 202 Accepted in 135ms (Views: 14.1ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-23 19:08:26 -0500
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-23 19:08:26 -0500
+Started GET "/api/v1/tracks" for ::1 at 2019-01-23 19:08:26 -0500
+Processing by Api::V1::TracksController#random as */*
+Started GET "/api/v1/users/2/playlists" for ::1 at 2019-01-23 19:08:26 -0500
+Started GET "/api/v1/playlist_tracks" for ::1 at 2019-01-23 19:08:26 -0500
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (24.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::PlaylistTracksController#index as */*
+Processing by Api::V1::TracksController#index as */*
+Processing by Api::V1::PlaylistsController#index as */*
+  Parameters: {"user_id"=>"2"}
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (46.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mTrack Load (6.9ms)[0m  [1m[34mSELECT "tracks".* FROM "tracks"[0m
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/api/v1/tracks_controller.rb:5
+  [1m[36mPlaylistTrack Load (2.2ms)[0m  [1m[34mSELECT "playlist_tracks".* FROM "playlist_tracks"[0m
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:5
+  [1m[36mPlaylist Load (3.0ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/api/v1/playlists_controller.rb:6
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (10.62ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (3.43ms)
+Completed 200 OK in 112ms (Views: 78.9ms | ActiveRecord: 28.5ms)
+
+
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.37ms)
+Completed 200 OK in 167ms (Views: 22.9ms | ActiveRecord: 91.3ms)
+
+
+Completed 200 OK in 146ms (Views: 40.8ms | ActiveRecord: 93.0ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (31.35ms)
+Completed 200 OK in 3826ms (Views: 71.0ms | ActiveRecord: 24.5ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (32.13ms)
+Completed 200 OK in 7023ms (Views: 48.6ms | ActiveRecord: 69.0ms)
+
+
+Started POST "/api/v1/login" for ::1 at 2019-01-23 19:18:23 -0500
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"raquel.r", "password"=>"[FILTERED]", "auth"=>{"username"=>"raquel.r", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (22.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "raquel.r"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (14.29ms)
+Completed 202 Accepted in 199ms (Views: 23.5ms | ActiveRecord: 33.3ms)
+
+
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-23 19:18:24 -0500
+Started GET "/api/v1/playlist_tracks" for ::1 at 2019-01-23 19:18:24 -0500
+Started GET "/api/v1/users/1/playlists" for ::1 at 2019-01-23 19:18:24 -0500
+Started GET "/api/v1/tracks" for ::1 at 2019-01-23 19:18:24 -0500
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-23 19:18:24 -0500
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (12.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::TracksController#index as */*
+Processing by Api::V1::PlaylistTracksController#index as */*
+Processing by Api::V1::TracksController#random as */*
+Processing by Api::V1::PlaylistsController#index as */*
+  [1m[36mUser Load (9.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (6.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (3.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mPlaylistTrack Load (7.0ms)[0m  [1m[34mSELECT "playlist_tracks".* FROM "playlist_tracks"[0m
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:5
+  [1m[36mTrack Load (3.7ms)[0m  [1m[34mSELECT "tracks".* FROM "tracks"[0m
+  ↳ app/controllers/api/v1/tracks_controller.rb:5
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (5.61ms)
+  [1m[36mPlaylist Load (11.9ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (11.14ms)
+Completed 200 OK in 113ms (Views: 37.4ms | ActiveRecord: 66.3ms)
+
+
+  ↳ app/controllers/api/v1/playlists_controller.rb:6
+Completed 200 OK in 118ms (Views: 23.6ms | ActiveRecord: 85.2ms)
+
+
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (2.73ms)
+Completed 200 OK in 144ms (Views: 45.1ms | ActiveRecord: 93.6ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (22.07ms)
+Completed 200 OK in 3081ms (Views: 30.1ms | ActiveRecord: 28.0ms)
+
+
+Started GET "/api/v1/tracks/search?q=take%20me%20on" for ::1 at 2019-01-23 19:18:28 -0500
+Processing by Api::V1::TracksController#search as */*
+  Parameters: {"q"=>"take me on"}
+  [1m[36mUser Load (5.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (3.67ms)
+Completed 200 OK in 1579ms (Views: 28.7ms | ActiveRecord: 5.8ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (29.59ms)
+Completed 200 OK in 6664ms (Views: 37.2ms | ActiveRecord: 13.0ms)
+
+
+Started POST "/api/v1/playlist_tracks" for ::1 at 2019-01-23 19:18:36 -0500
+Processing by Api::V1::PlaylistTracksController#create as JSON
+  Parameters: {"playlist_id"=>"9", "track_id"=>nil, "spotify_id"=>"2WfaOiMkCvy7F5fcp2zZ8L", "playlist_track"=>{"track_id"=>nil, "playlist_id"=>"9"}}
+  [1m[36mUser Load (54.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mTrack Load (1.7ms)[0m  [1m[34mSELECT  "tracks".* FROM "tracks" WHERE "tracks"."spotify_id" = $1 LIMIT $2[0m  [["spotify_id", "2WfaOiMkCvy7F5fcp2zZ8L"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:17
+Unpermitted parameters: :spotify_id, :playlist_track
+  [1m[35m (7.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:27
+  [1m[36mPlaylist Load (0.9ms)[0m  [1m[34mSELECT  "playlists".* FROM "playlists" WHERE "playlists"."id" = $1 LIMIT $2[0m  [["id", 9], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:27
+  [1m[36mTrack Load (7.7ms)[0m  [1m[34mSELECT  "tracks".* FROM "tracks" WHERE "tracks"."id" = $1 LIMIT $2[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:27
+  [1m[36mPlaylistTrack Create (22.8ms)[0m  [1m[32mINSERT INTO "playlist_tracks" ("track_id", "playlist_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["track_id", 20], ["playlist_id", 9], ["created_at", "2019-01-24 00:18:36.402945"], ["updated_at", "2019-01-24 00:18:36.402945"]]
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:27
+  [1m[35m (34.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:27
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered PlaylistTrackSerializer with ActiveModelSerializers::Adapter::Attributes (0.33ms)
+Completed 200 OK in 166ms (Views: 5.0ms | ActiveRecord: 138.6ms)
+
+
+Started POST "/api/v1/login" for ::1 at 2019-01-24 09:18:59 -0500
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /Users/raquelrandall/.rvm/gems/ruby-2.3.4/gems/activerecord-5.2.2/lib/active_record/log_subscriber.rb:98
+Processing by Api::V1::AuthController#create as */*
+  Parameters: {"username"=>"raquel.r", "password"=>"[FILTERED]", "auth"=>{"username"=>"raquel.r", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "raquel.r"], ["LIMIT", 1]]
+  ↳ app/controllers/api/v1/auth_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::Null with Hash (9.58ms)
+Completed 202 Accepted in 233ms (Views: 24.4ms | ActiveRecord: 68.5ms)
+
+
+Started GET "/api/v1/tracks/random" for ::1 at 2019-01-24 09:19:01 -0500
+Started GET "/api/v1/tracks/top_100" for ::1 at 2019-01-24 09:19:01 -0500
+Started GET "/api/v1/users/1/playlists" for ::1 at 2019-01-24 09:19:01 -0500
+Started GET "/api/v1/tracks" for ::1 at 2019-01-24 09:19:01 -0500
+Started GET "/api/v1/playlist_tracks" for ::1 at 2019-01-24 09:19:01 -0500
+Processing by Api::V1::TracksController#random as */*
+Processing by Api::V1::PlaylistsController#index as */*
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (13.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::TracksController#top_100 as */*
+  [1m[36mUser Load (6.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+Processing by Api::V1::TracksController#index as */*
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (24.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (39.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+Processing by Api::V1::PlaylistTracksController#index as */*
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mUser Load (3.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mTrack Load (5.8ms)[0m  [1m[34mSELECT "tracks".* FROM "tracks"[0m
+  ↳ app/controllers/api/v1/tracks_controller.rb:5
+  [1m[36mPlaylist Load (4.2ms)[0m  [1m[34mSELECT "playlists".* FROM "playlists"[0m
+  ↳ app/controllers/api/v1/playlists_controller.rb:6
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:27
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (6.87ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (12.01ms)
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (1.35ms)
+Completed 200 OK in 7874ms (Views: 7257.7ms | ActiveRecord: 97.6ms)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (88.05ms)
+Completed 200 OK in 8003ms (Views: 3577.4ms | ActiveRecord: 6.2ms)
+
+
+Completed 200 OK in 7996ms (Views: 7336.4ms | ActiveRecord: 107.7ms)
+
+
+  ↳ app/controllers/application_controller.rb:27
+Completed 200 OK in 7979ms (Views: 142.0ms | ActiveRecord: 62.7ms)
+
+
+  [1m[36mPlaylistTrack Load (40.7ms)[0m  [1m[34mSELECT "playlist_tracks".* FROM "playlist_tracks"[0m
+  ↳ app/controllers/api/v1/playlist_tracks_controller.rb:5
+[active_model_serializers] Rendered ActiveModel::Serializer::CollectionSerializer with ActiveModelSerializers::Adapter::Attributes (9.68ms)
+Completed 200 OK in 7490ms (Views: 151.1ms | ActiveRecord: 99.3ms)
+
+
