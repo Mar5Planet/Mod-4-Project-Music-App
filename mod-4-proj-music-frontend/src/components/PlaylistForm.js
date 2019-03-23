@@ -24,16 +24,18 @@ class PlaylistForm extends React.Component {
     })
   }
 
-
+//this.state
   render() {
+    //console.log(this.props)
     return(
       <div>
-      <button type="button" class="btn btn-primary" onClick={this.clickHandler}>Create New Playlist </button>
-      {this.state.clicked ? (<form className="form-group" onSubmit={(e) => this.props.createNewPlaylist(e, this.state)}>
+      <button type="button" className="btn btn-primary" onClick={this.clickHandler}>Create New Playlist </button>
+      {this.state.clicked ? (
+        <form className="form-group" onSubmit={(event) => this.props.createNewPlaylist(event, this.state)}>
 
         <input type="text" placeholder="Playlist Name" onChange={this.changeHandler} value={this.state.playlistName} />
         <input type="hidden" value={this.state.userId} />
-        <button type="button" className="btn btn-success">Submit</button>
+        <input type="submit" value="Submit" className="btn btn-success"/>
       </form>
     ) : (null)
   }

@@ -37,6 +37,10 @@ const Sidebar = props => {
     </div>
   ) : (
     <div className="sideBar">
+      <Link to={"/home"} >
+        <p className="menu-item">Home</p>
+      </Link>
+
       <Link to={"/login"} >
         <p className="menu-item">Login</p>
       </Link>

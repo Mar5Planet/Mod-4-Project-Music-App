@@ -28,7 +28,7 @@ class Home extends React.Component{
       </div>
     ) : (
       <div>
-        <h2>Welcome to Music App! Please <Link to={"/login"} >Log in!</Link></h2>
+        <h2>Welcome to Playlister! Please <Link to={"/login"} >Log in</Link> or <Link to={"/signup"}>Register</Link></h2>
 
       </div>
     )

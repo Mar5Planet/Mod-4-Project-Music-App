@@ -281,6 +281,7 @@ class App extends Component {
 
     createNewPlaylist = (e, playlist) => {
       e.preventDefault()
+      //console.log(playlist)
       fetch(`http://localhost:3001/api/v1/users/${playlist.userId}/playlists`, {
        method: "POST",
        headers: {
@@ -294,7 +295,7 @@ class App extends Component {
        })})
        .then(res => res.json())
        .then(data => {
-         let playlist = [data,...this.state.playlist]
+         let playlist = [...this.state.playlist, data]
          this.setState({
            playlist
          })
@@ -317,7 +318,6 @@ class App extends Component {
 
 
   render() {
-    console.log(this.state.tracks);
     return (
       <div className="App">
       <Sidebar

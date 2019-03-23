@@ -15,7 +15,7 @@ class Playlist extends React.Component {
         createNewPlaylist={this.props.createNewPlaylist}/>
 
         {this.props.playlist.map(pl =>
-          (<div><h3>{pl.name}</h3>
+          (<div key={pl.id}><h3>{pl.name}</h3>
 
             {this.props.playlistTracks.map(plt => (
 
