@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Button } from 'reactstrap';
 
 class AddToPlaylist extends React.Component {
 
@@ -17,11 +17,16 @@ class AddToPlaylist extends React.Component {
   render() {
     return(
       <form>
-        <select name="type" id="type" onChange={this.changeHandler}>{this.props.playlist.map(pl => (
+        <select name="type" id="type" onChange={this.changeHandler}>
+        <option>Select a list</option>
+        {this.props.playlist.map(pl => (
           <option value={pl.id}>{pl.name}</option>
         ))}
         </select>
-        <button onClick={(e) => this.props.addToPlaylist(e, this.state.selectedFilter, this.props.track, this.props.track.spotify_id)} type="button" className="btn btn-info">Add Song</button>
+
+        <Button
+          onClick={(e) => this.props.addToPlaylist(e, this.state.selectedFilter, this.props.track, this.props.track.spotify_id)}
+          color="primary">Add Song</Button>
       </form>
     )
   }

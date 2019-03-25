@@ -1,40 +1,32 @@
 import React from 'react';
 import PlaylistForm from './PlaylistForm'
-import PlaylistTrack from './PlaylistTrack'
+import PlaylistCard from './PlaylistCard'
 
 
 class Playlist extends React.Component {
 
 
+
   render() {
+
     return(
       <div>
       <h1>My Playlists</h1>
       <PlaylistForm
         userInfo={this.props.userInfo}
-        createNewPlaylist={this.props.createNewPlaylist}/>
+        createNewPlaylist={this.props.createNewPlaylist}
+      />
+      <br />
 
         {this.props.playlist.map(pl =>
-          (<div key={pl.id}><h3>{pl.name}</h3>
-
-            {this.props.playlistTracks.map(plt => (
-
-            plt.playlist_id === pl.id ?
-
-              <PlaylistTrack playlist={this.props.playlist.find(pl =>
-                plt.playlist_id === pl.id
-              )}
-                tracks={this.props.tracks.filter(track=> (
-                track.id === plt.track_id
-              ))}
-              />
-
-              : null
-
-            ))}
-
-          </div>)
-        )}
+          ( <PlaylistCard
+              pl={pl}
+              playlist={this.props.playlist}
+              tracks={this.props.tracks}
+              playlistTracks={this.props.playlistTracks}
+            />
+            )
+        )}<br/>
 
 
       </div>

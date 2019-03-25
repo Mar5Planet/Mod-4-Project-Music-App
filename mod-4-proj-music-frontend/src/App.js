@@ -300,6 +300,7 @@ class App extends Component {
            playlist
          })
        })
+       .then(alert(`${playlist.name} created!`))
     }
 
     // addToPlaylist = (track) => {

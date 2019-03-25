@@ -30,6 +30,7 @@ class PlaylistForm extends React.Component {
     return(
       <div>
       <button type="button" className="btn btn-primary" onClick={this.clickHandler}>Create New Playlist </button>
+
       {this.state.clicked ? (
         <form className="form-group" onSubmit={(event) => this.props.createNewPlaylist(event, this.state)}>
 
